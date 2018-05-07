@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>极速APP</title>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="common/jquery-ui/css/base/jquery-ui-1.10.4.custom.min.css"/>
+    <link rel="stylesheet" href="common/Swiper/swiper-4.2.2.min.css">
+
+    <link rel="stylesheet" href="common/jquery-weui/css/weui.min.css">
+    <link rel="stylesheet" href="common/jquery-weui/css/jquery-weui.min.css">
+
+    <link rel="stylesheet" href="css/index.css"/>
+
+    <script src="common/jquery-ui/js/jquery-1.10.2.js"></script>
+    <script src="common/jquery-ui/js/jquery-ui-1.10.4.custom.min.js"></script>
+
+    <script src="common/jquery-weui/js/jquery-weui.min.js"></script>
+    <script src="common/Swiper/swiper-4.2.2.min.js"></script>
+    <script src="common/template-web.js"></script>
+
+    <script src="js/template.js"></script>
+
+</head>
+<body>
+
+<div class="js-navbar">
+    <a href="javascript:;" class="weui-btn">预览</a>
+    <a href="javascript:;" class="weui-btn" id="saveAll">保存</a>
+    <a href="javascript:;" class="weui-btn">生成</a>
+</div>
+
+<div id="jsApp">
+    <!--左侧组件库区-->
+    <div class="lfnr">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1"><i class="fa fa-clipboard" aria-hidden="true"></i>页面管理</a></li>
+                <li><a href="#tabs-2"><i class="fa fa-cubes" aria-hidden="true"></i>组件库</a></li>
+            </ul>
+
+            <div id="tabs-1">
+
+                <div class="pageFile currentFile" data-count="file0">
+                    <div class="file-name" onclick="openFile(this)">
+                        <i class="fa fa-folder-o file" aria-hidden="true"></i>
+                        <span>默认分组</span>
+
+                        <i class="fa fa-pencil-square-o edit" aria-hidden="true" onclick="editFile(this)"
+                           title="编辑名称"></i>
+                        <i class="fa fa-trash-o delete" aria-hidden="true" onclick="deleteFile(this)" title="删除"></i>
+
+                        <div class="edit-input">
+                            <input type="text"/>
+                            <a class="ok">确定</a>
+                            <a class="no">取消</a>
+                        </div>
+                    </div>
+                    <ul>
+                        <!--<li class="active page" data-count="file0-0">
+                            <span>页面1</span>
+
+                            <i class="fa fa-pencil-square-o edit" aria-hidden="true" onclick="editPage(this)"
+                               title="编辑名称"></i>
+                            <i class="fa fa-trash-o delete" aria-hidden="true" onclick="deletePage(this)"
+                               title="删除"></i>
+
+                            <div class="edit-input">
+                                <input type="text"/>
+                                <a class="ok">确定</a>
+                                <a class="no">取消</a>
+                            </div>
+                        </li>-->
+
+                    </ul>
+                </div>
+
+                <div class="addPage">
+                    <a onclick="addPage()"><i class="fa fa-file-text" aria-hidden="true"></i>添加界面</a>
+                    <a onclick="addFile()"><i class="fa fa-file-video-o" aria-hidden="true"></i>添加分组</a>
+                </div>
+            </div>
+            <div id="tabs-2">
+                <table>
+                    <tr>
+                        <td class="item" data-code="001">
+                            <i class="fa fa-font fa-2x" aria-hidden="true"></i>
+
+                            <p>文字</p>
+                        </td>
+                        <td class="item" data-code="002">
+                            <i class="fa fa-picture-o fa-2x" aria-hidden="true"></i>
+
+                            <p>图片</p>
+                        </td>
+                        <td class="item" data-code="003">
+                            <i class="fa fa-hand-pointer-o fa-2x" aria-hidden="true"></i>
+
+                            <p>按钮</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item" data-code="004">
+                            <i class="fa fa-calendar-times-o fa-2x" aria-hidden="true"></i>
+
+                            <p>标题</p>
+                        </td>
+                        <td class="item" data-code="005">
+                            <i class="fa fa-slideshare fa-2x" aria-hidden="true"></i>
+
+                            <p>轮播</p>
+                        </td>
+                        <td class="item" data-code="006">
+                            <i class="fa fa-cogs fa-2x" aria-hidden="true"></i>
+
+                            <p>分类</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="item" data-code="007">
+                            <i class="fa fa-list fa-2x" aria-hidden="true"></i>
+
+                            <p>图片列表</p>
+                        </td>
+                        <td class="item" data-code="008">
+                            <i class="fa fa-list-ol fa-2x" aria-hidden="true"></i>
+
+                            <p>图文集</p>
+                        </td>
+                        <td class="item" data-code="009">
+                            <i class="fa fa-video-camera fa-2x" aria-hidden="true"></i>
+
+                            <p>视频</p>
+                        </td>
+                    </tr>
+                </table>
+                <div class="tab-title">
+                    <span class="active">布局</span>
+                    <span>高级</span>
+                    <span>其他</span>
+                </div>
+                <div class="tab-other">
+                    <table class="active">
+                        <tr>
+                            <td class="item" data-code="010">
+                                <i class="fa fa-columns fa-2x" aria-hidden="true"></i>
+
+                                <p>双栏</p>
+                            </td>
+                            <td class="item" data-code="011">
+                                <i class="fa fa-th-large fa-2x" aria-hidden="true"></i>
+
+                                <p>面板</p>
+                            </td>
+                            <td class="item" data-code="012">
+                                <i class="fa fa-firefox fa-2x" aria-hidden="true"></i>
+
+                                <p>自由面板</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item" data-code="013">
+                                <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+
+                                <p>顶部导航</p>
+                            </td>
+                            <td class="item" data-code="014">
+                                <i class="fa fa-th fa-2x" aria-hidden="true"></i>
+
+                                <p> 底部导航</p>
+                            </td>
+                            <td class="item" data-code="015">
+                                <i class="fa fa-anchor fa-2x" aria-hidden="true"></i>
+
+                                <p>分割线</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="item" data-code="016">
+                                <i class="fa fa-indent fa-2x" aria-hidden="true"></i>
+
+                                <p>动态分类</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td class="item" data-code="017">
+                                <i class="fa fa-list-ul fa-2x" aria-hidden="true"></i>
+
+                                <p>动态列表</p>
+                            </td>
+                            <td class="item" data-code="018">
+                                <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i>
+
+                                <p>个人中心</p>
+                            </td>
+                            <td class="item" data-code="019">
+                                <i class="fa fa-street-view fa-2x" aria-hidden="true"></i>
+
+                                <p>地图</p>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--右侧显示区-->
+    <div class="rtnr">
+        <div class="top-bar">
+
+        </div>
+        <div class="middle">
+            <!--头部图片-->
+            <div>
+                <img src="http://cdn.jisuapp.cn/zhichi_frontend/static/webapp/images/phonetop.png"
+                     style="width: 100%;height: 40px;display: block;"
+                     alt=""/>
+            </div>
+            <!--内容区域-->
+            <div class="middle-content">
+                <div class="phoneMap">
+                   <!-- <ul class="mobile_area currentPage" data-count="file0-0">
+
+                    </ul>-->
+                </div>
+            </div>
+
+            <div class="btn-foot">
+                <button class="menu"></button>
+            </div>
+        </div>
+    </div>
+
+    <!--组件样式区-->
+    <div id="aside">
+
+    </div>
+</div>
+<!--此处是右侧显示区rtnr 位置模板-->
+<script type="text/html" id="txtInner">
+    <li data-code="001" class="txtInner active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>{{ content }}</div>
+    </li>
+</script>
+<script type="text/html" id="imgView">
+    <li data-code="002" class="imgView active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>
+            <a href="{{ imgView.url }}"><img src="{{ imgView.src }}"></a>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="btnButton">
+    <li data-code="003" class="btnButton active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>
+            <button>{{ content }}</button>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="titleName">
+    <li data-code="004" class="titleName active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div><h3>{{ title }}</h3></div>
+    </li>
+</script>
+<script type="text/html" id="carousSwip">
+    <li data-code="005" class="carousSwip active{{each classObject}} {{$value}}{{/each}}"
+        data-autoPlay="true" data-interval="5000" style="{{styleName}}">
+
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {{each carous value i}}
+                <div class="swiper-slide">
+                    <a href="{{value.url}}"><img src="{{value.src}}"></a>
+                </div>
+                {{/each}}
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+    </li>
+</script>
+<script type="text/html" id="classfiy">
+    <li data-code="006" class="classfiy active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>
+            {{each classfiy value i}}
+            <a href="{{value.url}}">{{value.name}}</a>
+            {{/each}}
+        </div>
+    </li>
+</script>
+<script type="text/html" id="imgList">
+    <li data-code="007" class="imgList active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div class="imgBox">
+            {{each imgList value i}}
+            <a href="{{value.url}}"><img src="{{value.src}}"></a>
+            {{/each}}
+        </div>
+    </li>
+</script>
+<script type="text/html" id="glossary">
+    <li data-code="008" class="glossary active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>
+            <a href="{{glossary.url}}">
+                <img src="{{glossary.src}}">
+
+                <div>
+                    <h5>{{glossary.title}}</h5>
+
+                    <p>{{glossary.content}}</p>
+                </div>
+            </a>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="videoName">
+    <li data-code="009" class="videoName active{{each classObject}} {{$value}}{{/each}}"
+        style="{{styleName}}">
+        <div>
+            <video src="{{videoName}}" controls="controls">your browser does not support the video tag</video>
+        </div>
+    </li>
+</script>
+<script type="text/html" id="tabBar">
+    <!--底部导航-->
+    <li class="weui-tabbar" data-code="014">
+        <a href="javascript:;" class="weui-tabbar__item weui-bar__item--on">
+            <div class="weui-tabbar__icon">
+                <i class="fa fa-comments-o" aria-hidden="true"></i>
+            </div>
+            <p class="weui-tabbar__label">微信</p>
+        </a>
+        <a href="javascript:;" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="fa fa-address-book" aria-hidden="true"></i>
+            </div>
+            <p class="weui-tabbar__label">通讯录</p>
+        </a>
+        <a href="javascript:;" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
+            <p class="weui-tabbar__label">发现</p>
+        </a>
+        <a href="javascript:;" class="weui-tabbar__item">
+            <div class="weui-tabbar__icon">
+                <i class="fa fa-user-secret" aria-hidden="true"></i>
+            </div>
+            <p class="weui-tabbar__label">我</p>
+        </a>
+    </li>
+</script>
+
+<!--此处是组件样式区aside 位置模板-->
+<!--文本001-->
+<script id="textHtml" type="text/html">
+    {{ if code == '001'}}
+    <div class="textHtml">
+
+        <p><span>字体大小(px)：</span><input type="number" min="12" value="16" class="txtSize"/></p>
+
+        <p><span>字体行高(px)：</span><input type="number" min="10" value="30" class="txtHeight"/></p>
+
+        <p><span>文本内容：</span> <textarea class="txtArea"></textarea></p>
+
+        <p>
+            <span>文本位置：</span>
+            <span class="adr" data-style="left">居左</span>
+            <span class="adr" data-style="center">居中</span>
+            <span class="adr" data-style="right">居右</span>
+        </p>
+
+        <p><span>字体颜色：</span><input type="color" value="" class="txtColor"/></p>
+    </div>
+    {{ /if }}
+</script>
+<!--图片002-->
+<script id="imgHtml" type="text/html">
+    {{ if code == '002'}}
+    <div class="imgHtml">
+        <p><span>组件高度(px)：</span><input type="number" value="60" min="0" class="imgH"/></p>
+
+        <p><span>组件宽度(px)：</span><input type="number" value="100%" min="0" class="imgW"/></p>
+
+        <p>
+            <span>图片位置：</span>
+            <span class="adr" data-style="0">居左</span>
+            <span class="adr" data-style="0 auto">居中</span>
+            <span class="adr" data-style="0 0 0 auto">居右</span>
+        </p>
+
+        <div class="slider-range"><span>透明度：</span><span class="slider-value" style="color:red">100%</span>
+
+            <div class="slider-range-min"></div>
+        </div>
+
+        <div class="uploadDiv">
+            <img src="img/index.png" alt=""/>
+
+            <div class="uploadImg">
+                <input type="file" src="bdhvfhvbdfhvbdhf"/>
+                <span>更换图片</span>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</script>
+<!--按钮003-->
+<script id="btnHtml" type="text/html">
+    {{ if code == '003'}}
+    <div class="btnHtml">
+        <p><span>文字大小(px)：</span><input type="number" class="txtSize"/></p>
+
+        <p><span>按钮文字：</span><input type="text" class="btnTxt"/></p>
+
+        <p>
+            <span>按钮位置：</span>
+            <span class="adr" data-style="left">居左</span>
+            <span class="adr" data-style="center">居中</span>
+            <span class="adr" data-style="right">居右</span>
+        </p>
+
+        <p><span>按钮颜色：</span><input type="color" value="" class="txtColor"/></p>
+
+        <div class="slider-range"><span>透明度：</span><span class="slider-value" style="color:red">100%</span>
+
+            <div class="slider-range-min"></div>
+        </div>
+    </div>
+    {{ /if }}
+</script>
+<!--标题004-->
+<script id="titleHtml" type="text/html">
+    {{ if code == '004'}}
+    <div class="titleHtml">
+        <p><span>字体大小(px)：</span><input type="number" min="12" value="16" class="txtSize"/></p>
+
+        <p><span>字体行高(px)：</span><input type="number" min="10" value="30" class="txtHeight"/></p>
+
+        <p><span>标题文字： </span><input type="text" class="titleTxt"/></p>
+
+        <p>
+            <span>文本位置：</span>
+            <span class="adr" data-style="left">居左</span>
+            <span class="adr" data-style="center">居中</span>
+            <span class="adr" data-style="right">居右</span>
+        </p>
+
+        <p><span>字体颜色：</span><input type="color" value="" class="txtColor"/></p>
+
+    </div>
+    {{ /if }}
+</script>
+<!--轮播005-->
+<script id="carouselHtml" type="text/html">
+    {{ if code == '005'}}
+    <div class="carouselHtml">
+        <p><span>组件高度(px)：</span><input type="number" min="0" value="150" class="carousH"/></p>
+
+        <div class="car-switch">
+            <span>自动轮播：</span>
+
+            <div class="switch-container">
+                <input id="switch" type="checkbox" class="switch" checked/>
+                <label for="switch"></label>
+            </div>
+        </div>
+        <p><span>轮播间隔(ms)：</span><input type="number" min="0" value="5000" class="carousT"/></p>
+
+        <button class="addFiy">添加图片</button>
+
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">图片1：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteCarous(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <img src="img/index.png" alt=""/>
+
+                <div class="uploadImg">
+                    <input type="file"/>
+                    <span>更换图片</span>
+                </div>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">图片2：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteCarous(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <img src="img/index.png" alt=""/>
+
+                <div class="uploadImg">
+                    <input type="file"/>
+                    <span>更换图片</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</script>
+<!--分类006-->
+<script id="classfiyHtml" type="text/html">
+    {{ if code == '006'}}
+    <div class="classfiyHtml">
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">分类1：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteFiy(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">分类2：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteFiy(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">分类3：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteFiy(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">分类4：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteFiy(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+
+        <!--<p><span><i class="fa fa-trash-o" aria-hidden="true" onclick="deleteFiy(this)"></i>分类1：</span><input type="text" class="fiy"/></p>
+
+        <p><span><i class="fa fa-trash-o" aria-hidden="true" onclick="deleteFiy(this)"></i>分类2：</span><input type="text" class="fiy"/></p>
+
+        <p><span><i class="fa fa-trash-o" aria-hidden="true" onclick="deleteFiy(this)"></i>分类3：</span><input type="text" class="fiy"/></p>
+
+        <p><span><i class="fa fa-trash-o" aria-hidden="true" onclick="deleteFiy(this)"></i>分类4：</span><input type="text" class="fiy"/></p>
+-->
+        <button class="addFiy">添加分类</button>
+
+        <p><span>字体大小(px)：</span><input type="number" min="12" value="16" class="fiySize"/></p>
+
+        <p><span>字体颜色：</span><input type="color" value="" class="txtColor"/></p>
+
+    </div>
+    {{ /if }}
+</script>
+<!-- 图片列表007 -->
+<script id="imgListHtml" type="text/html">
+    {{ if code == '007'}}
+    <div class="imgListHtml">
+
+        <div class="img-list">
+            <span class="tit" onclick="imgListChange(this)">图片1：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                   onclick="deleteImgList(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <img src="img/index.png" alt=""/>
+
+                <div class="uploadImg">
+                    <input type="file"/>
+                    <span>更换图片</span>
+                </div>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="imgListChange(this)">图片2：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                   onclick="deleteImgList(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <img src="img/index.png" alt=""/>
+
+                <div class="uploadImg">
+                    <input type="file"/>
+                    <span>更换图片</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="addFiy">添加图片</button>
+
+        <p><span>组件高度(px)：</span><input type="number" value="60" min="0" class="imgH"/></p>
+
+    </div>
+    {{ /if }}
+</script>
+<!-- 图文集008 -->
+<script id="glossaryHtml" type="text/html">
+    {{ if code == '008'}}
+    <div class="glossaryHtml">
+        <p><span>字体大小(px)：</span><input type="number" class="txtSize"/></p>
+
+        <p><span>标题内容：</span><input type="text" class="title"/></p>
+
+        <p><span>文本内容: </span><textarea></textarea></p>
+
+        <div class="uploadDiv">
+            <img src="img/index.png" alt=""/>
+
+            <div class="uploadImg">
+                <input type="file"/>
+                <span>更换图片</span>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</script>
+<!-- 视频009 -->
+<script id="videoNameHtml" type="text/html">
+    {{ if code == '009'}}
+    <div class="videoNameHtml">
+        <div class="uploadDiv">
+            <img src="img/index.png" alt=""/>
+
+            <div class="uploadImg">
+                <input type="file"/>
+                <span>更换视频</span>
+            </div>
+        </div>
+    </div>
+    {{ /if }}
+</script>
+
+<!-- 底部导航014 -->
+<script id="tabBarHtml" type="text/html">
+    {{ if code == '014'}}
+    <div class="tabBarHtml">
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">导航1：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteTab(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">导航2：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteTab(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">导航3：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteTab(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+        <div class="img-list">
+            <span class="tit" onclick="carousChange(this)">导航4：<i class="fa fa-trash-o" aria-hidden="true"
+                                                                  onclick="deleteTab(this)"></i> </span>
+
+            <div class="uploadDiv">
+                <input type="text"/>
+            </div>
+        </div>
+
+        <button class="addFiy">添加导航</button>
+
+        <p><span>字体大小(px)：</span><input type="number" min="12" value="16" class="fiySize"/></p>
+
+        <p><span>字体颜色：</span><input type="color" value="" class="txtColor"/></p>
+
+    </div>
+    {{ /if }}
+</script>
+
+</body>
+</html>

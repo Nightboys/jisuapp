@@ -1,0 +1,982 @@
+/*********admin people***********/
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-width: 900px;
+  overflow: auto;
+  margin: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+body {
+  padding-top: 50px;
+  background: #fff;
+  overflow: hidden;
+}
+.js-navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.js-navbar .weui-btn {
+  line-height: 1.8;
+  display: inline-block;
+  border: 1px solid #efbf1f;
+  color: #efbf1f;
+  font-size: 1em;
+  margin-right: 1em;
+}
+.js-navbar .weui-btn:after {
+  border: none;
+}
+.js-navbar .weui-btn:hover {
+  background: #efbf1f;
+  color: #fff;
+}
+.js-navbar .weui-btn:active {
+  opacity: 0.8;
+}
+#jsApp {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin: auto;
+  background: #DCDCDC;
+  display: flex;
+  justify-content: space-around;
+}
+#jsApp * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline: none;
+  text-decoration: none;
+}
+#jsApp .lfnr {
+  float: left;
+  width: 30%;
+  height: calc(100% + 50px);
+  max-width: 400px;
+  background: #f6f6f6;
+  margin-top: -50px;
+}
+#jsApp .lfnr #tabs {
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+}
+#jsApp .lfnr #tabs > ul {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  line-height: 50px;
+  border-radius: 0;
+  border: none;
+}
+#jsApp .lfnr #tabs > ul > li {
+  width: 50%;
+  display: block;
+  border: none;
+  background: #fff;
+}
+#jsApp .lfnr #tabs > ul > li a {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+#jsApp .lfnr #tabs > ul > li a .fa {
+  padding-right: 5px;
+}
+#jsApp .lfnr #tabs > ul > li.ui-tabs-active {
+  color: #efbf1f;
+  border-bottom: 2px solid #efbf1f;
+  position: relative;
+}
+#jsApp .lfnr #tabs > ul > li.ui-tabs-active * {
+  color: #efbf1f;
+}
+#jsApp .lfnr #tabs > ul > li.ui-tabs-active:before {
+  content: '';
+  display: block;
+  border-style: solid;
+  border-width: 10px;
+  border-color: transparent;
+  position: absolute;
+  bottom: -1px;
+  left: calc(50% - 10px);
+  border-bottom-color: #efbf1f;
+}
+#jsApp .lfnr #tabs > ul:after {
+  content: '';
+  width: 1px;
+  overflow: hidden;
+  height: 30px;
+  border-right: 1px solid #DCDCDC;
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+#jsApp .lfnr #tabs #tabs-1,
+#jsApp .lfnr #tabs #tabs-2 {
+  width: 100%;
+  height: calc(100% - 50px);
+}
+#jsApp .lfnr #tabs #tabs-1 {
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 0.5em 0.3em;
+  position: relative;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile {
+  width: 100%;
+  background: #fff;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name {
+  display: block;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 1em;
+  cursor: default;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .file {
+  padding-right: 3px;
+  position: relative;
+  z-index: 999;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  z-index: 999;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 8px solid #888;
+  border-bottom: 5px solid transparent;
+  transition: all linear .3s;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name > i.edit,
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name i.delete {
+  display: none;
+  font-size: 24px;
+  color: #959595;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  z-index: 10;
+  text-indent: 0;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name > i.delete {
+  right: 10px;
+  top: 9px;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name:hover > i.edit,
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name:hover i.delete {
+  display: inline-block;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .edit-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  width: 85%;
+  height: 100%;
+  background: #fff;
+  display: none;
+  align-items: center;
+  white-space: nowrap;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .edit-input > input {
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  border-style: none;
+  border-bottom: 1px dashed #999;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .edit-input > a {
+  display: inline-block;
+  line-height: normal;
+  text-indent: 0;
+  padding: 5px 10px;
+  background: #efbf1f;
+  color: #fff;
+  border-radius: 5px;
+  cursor: default;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .edit-input > a:active {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name .edit-input > a.no {
+  background: #f6f6f6;
+  color: #959595;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul {
+  display: none;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page {
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  border-bottom: 1px solid #ddd;
+  text-indent: 2.5em;
+  margin: 0 auto;
+  cursor: default;
+  position: relative;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page:hover {
+  background: #fff;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page:hover > i {
+  display: inline-block;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page > i {
+  display: none;
+  font-size: 24px;
+  color: #959595;
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  z-index: 10;
+  text-indent: 0;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page > i.delete {
+  right: 10px;
+  top: 9px;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page .edit-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: none;
+  align-items: center;
+  white-space: nowrap;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page .edit-input > input {
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  border-style: none;
+  border-bottom: 1px dashed #999;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page .edit-input > a {
+  display: inline-block;
+  line-height: normal;
+  text-indent: 0;
+  padding: 5px 10px;
+  background: #efbf1f;
+  color: #fff;
+  border-radius: 5px;
+  cursor: default;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page .edit-input > a:active {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.page .edit-input > a.no {
+  background: #f6f6f6;
+  color: #959595;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.active {
+  border: 1px solid #efbf1f;
+  background: #fff;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.file-name ~ ul > li.active > i {
+  display: inline-block;
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.openW:before {
+  transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+  -moz-transform: rotateZ(90deg);
+  -ms-transform: rotateZ(90deg);
+}
+#jsApp .lfnr #tabs #tabs-1 .pageFile div.openW ~ ul {
+  display: block;
+}
+#jsApp .lfnr #tabs #tabs-1 .addPage {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+}
+#jsApp .lfnr #tabs #tabs-1 .addPage > a {
+  display: inline-block;
+  width: 40%;
+  margin: 0 4%;
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: normal;
+  border-radius: 4px;
+  background-color: #efbf1f;
+}
+#jsApp .lfnr #tabs #tabs-1 .addPage > a > i {
+  padding-right: 5px;
+}
+#jsApp .lfnr #tabs #tabs-1 .addPage > a:active {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+#jsApp .lfnr #tabs #tabs-2 {
+  background: #f6f6f6;
+}
+#jsApp .lfnr #tabs #tabs-2 table {
+  width: 100%;
+  height: calc(50% - 25px);
+  border-collapse: collapse;
+}
+#jsApp .lfnr #tabs #tabs-2 table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 33%;
+  color: #949090;
+  cursor: pointer;
+}
+#jsApp .lfnr #tabs #tabs-2 table td span {
+  margin: 0 auto;
+}
+#jsApp .lfnr #tabs #tabs-2 table td:hover {
+  background: #DCDCDC;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-title {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-title span {
+  display: block;
+  width: 33%;
+  height: 100%;
+  text-align: center;
+  cursor: default;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-title span.active {
+  color: #efbf1f;
+  border-bottom: 2px solid #efbf1f;
+  position: relative;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-title span.active:before {
+  content: '';
+  display: block;
+  border-style: solid;
+  border-width: 5px;
+  border-color: transparent;
+  position: absolute;
+  bottom: -1px;
+  left: calc(50% - 5px);
+  border-bottom-color: #efbf1f;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-other {
+  width: 100%;
+  height: calc(50% - 25px);
+  overflow: hidden;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-other table {
+  height: 100%;
+  display: none;
+}
+#jsApp .lfnr #tabs #tabs-2 .tab-other .active {
+  display: table;
+}
+#jsApp .rtnr {
+  float: left;
+  width: 42%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+#jsApp .rtnr .middle {
+  width: 90%;
+  height: 95%;
+  max-width: 375px;
+  max-height: 667px;
+  margin: 0 auto;
+  border: 1px solid #959595;
+  overflow: hidden;
+  border-radius: 30px;
+  background: #DCDCDC;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#jsApp .rtnr .middle .middle-content {
+  width: 100%;
+  height: calc(100% - 100px);
+  position: relative;
+  background: #fff;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background: #fff;
+  overflow: hidden;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area {
+  width: calc(100% + 10px);
+  height: 100%;
+  border-bottom: 1px solid #c0bfc4;
+  overflow: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li {
+  margin-bottom: 2px;
+  position: relative;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li:last-child {
+  margin-bottom: 0;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li .fa-window-close-o {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  color: #0000ee;
+  font-size: 20px !important;
+  z-index: 99999;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li .fa-window-close-o:before {
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li button {
+  color: #fff;
+  font-size: 1em;
+  padding: 0.3em 1em;
+  margin: 0 auto;
+  background: green;
+  border-radius: 5px;
+  border: none;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li > div {
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li.ui-state-highlight {
+  height: 40px;
+  background: #599dfc;
+  content: "放在此处";
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area > li.border,
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area li.clk {
+  box-shadow: 0 0 5px #0000ee;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgView {
+  height: 100px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgView img {
+  width: 100%;
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList {
+  height: 60px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList .imgBox {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList .imgBox > a {
+  flex: 1;
+  margin-left: 2px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList .imgBox > a:first-child {
+  margin: 0;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList .imgBox > a img {
+  width: 100%;
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .imgList .imgBox > img {
+  flex: 1;
+  margin: 0 0.5em;
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .videoName {
+  width: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .videoName > div {
+  height: 150px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .videoName > div video {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  background: #eee;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .carousSwip {
+  height: 150px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .carousSwip a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .carousSwip a img {
+  width: 100%;
+  height: 100%;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .carousSwip .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  margin: 0 3px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .carousSwip .swiper-pagination-bullet-active {
+  background: #fff;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .classfiy {
+  background: #eee;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .classfiy > div {
+  display: flex;
+  justify-content: space-around;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .classfiy > div > a {
+  flex: 1;
+  text-align: center;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary {
+  font-size: 1em;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div {
+  display: flex;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div > a {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: #333;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div > a > img {
+  width: 30%;
+  height: 60px;
+  margin-right: 0.5em;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div > a > div {
+  width: 68%;
+  overflow: hidden;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div > a > div h5 {
+  font-size: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .glossary > div > a > div p {
+  font-size: 0.8em;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .weui-tabbar {
+  margin: 0 auto !important;
+  position: fixed !important;
+  left: 0;
+  bottom: 60px;
+}
+#jsApp .rtnr .middle .middle-content .phoneMap .mobile_area .weui-tabbar:before {
+  border: none;
+}
+#jsApp .rtnr .middle .btn-foot {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#jsApp .rtnr .middle .btn-foot .menu {
+  border: none;
+  width: 50px;
+  height: 50px;
+  background: url("../img/home-btn.png") no-repeat center center;
+  background-size: contain;
+  animation: rotateBtn 5s infinite;
+  -webkit-animation: rotateBtn 4s linear infinite;
+  transform-origin: 50% 50%;
+  /*
+          border-radius: 50%;
+          font-size: 16px;
+          background: #959595;
+          animation: rotateBtn 5s infinite;
+          -webkit-animation: rotateBtn 5s infinite;
+        */
+}
+#jsApp #aside {
+  float: right;
+  width: 30%;
+  height: 100%;
+  max-width: 400px;
+  font-size: 1em;
+  background: #f6f6f6;
+  padding: 1em;
+  overflow-y: auto;
+  /*位置*/
+  /*开关的大小*/
+  /*添加分类*/
+  /*透明度-滑块*/
+}
+#jsApp #aside > div > p {
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+  display: flex;
+  background: #eee;
+  border-radius: 5px;
+}
+#jsApp #aside > div > p > span:first-child {
+  display: inline-block;
+  width: 40%;
+  max-width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 0.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#jsApp #aside > div > p > input {
+  width: 60%;
+  max-width: 170px;
+}
+#jsApp #aside input {
+  height: 40px;
+  line-height: 40px;
+  background: #fff;
+  text-indent: 0.5em;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#jsApp #aside textarea {
+  width: 60%;
+  height: 60px;
+  resize: none;
+  max-width: 210px;
+  background: #fff;
+  text-indent: 1em;
+  border: 1px solid #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  vertical-align: text-top;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 0.5em 0;
+}
+#jsApp #aside input.txtColor {
+  width: 60px;
+}
+#jsApp #aside .imgHtml,
+#jsApp #aside .carouselHtml,
+#jsApp #aside .classfiyHtml,
+#jsApp #aside .imgListHtml,
+#jsApp #aside .glossaryHtml,
+#jsApp #aside .videoNameHtml,
+#jsApp #aside .tabBarHtml {
+  margin: 1em auto;
+}
+#jsApp #aside .imgHtml .uploadDiv,
+#jsApp #aside .carouselHtml .uploadDiv,
+#jsApp #aside .classfiyHtml .uploadDiv,
+#jsApp #aside .imgListHtml .uploadDiv,
+#jsApp #aside .glossaryHtml .uploadDiv,
+#jsApp #aside .videoNameHtml .uploadDiv,
+#jsApp #aside .tabBarHtml .uploadDiv {
+  display: flex;
+  margin: 1em auto;
+  justify-content: space-between;
+}
+#jsApp #aside .imgHtml img,
+#jsApp #aside .carouselHtml img,
+#jsApp #aside .classfiyHtml img,
+#jsApp #aside .imgListHtml img,
+#jsApp #aside .glossaryHtml img,
+#jsApp #aside .videoNameHtml img,
+#jsApp #aside .tabBarHtml img,
+#jsApp #aside .imgHtml video,
+#jsApp #aside .carouselHtml video,
+#jsApp #aside .classfiyHtml video,
+#jsApp #aside .imgListHtml video,
+#jsApp #aside .glossaryHtml video,
+#jsApp #aside .videoNameHtml video,
+#jsApp #aside .tabBarHtml video {
+  width: 100px;
+  height: 100px;
+  background: #aaa;
+}
+#jsApp #aside .imgHtml .uploadImg,
+#jsApp #aside .carouselHtml .uploadImg,
+#jsApp #aside .classfiyHtml .uploadImg,
+#jsApp #aside .imgListHtml .uploadImg,
+#jsApp #aside .glossaryHtml .uploadImg,
+#jsApp #aside .videoNameHtml .uploadImg,
+#jsApp #aside .tabBarHtml .uploadImg {
+  flex: 1;
+  height: 100px;
+  line-height: 100px;
+  position: relative;
+}
+#jsApp #aside .imgHtml .uploadImg input[type=file],
+#jsApp #aside .carouselHtml .uploadImg input[type=file],
+#jsApp #aside .classfiyHtml .uploadImg input[type=file],
+#jsApp #aside .imgListHtml .uploadImg input[type=file],
+#jsApp #aside .glossaryHtml .uploadImg input[type=file],
+#jsApp #aside .videoNameHtml .uploadImg input[type=file],
+#jsApp #aside .tabBarHtml .uploadImg input[type=file] {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background: #003eff;
+  margin: 0;
+}
+#jsApp #aside .imgHtml .uploadImg span,
+#jsApp #aside .carouselHtml .uploadImg span,
+#jsApp #aside .classfiyHtml .uploadImg span,
+#jsApp #aside .imgListHtml .uploadImg span,
+#jsApp #aside .glossaryHtml .uploadImg span,
+#jsApp #aside .videoNameHtml .uploadImg span,
+#jsApp #aside .tabBarHtml .uploadImg span {
+  color: #003eff;
+  padding-left: 1em;
+}
+#jsApp #aside .imgHtml .img-list,
+#jsApp #aside .carouselHtml .img-list,
+#jsApp #aside .classfiyHtml .img-list,
+#jsApp #aside .imgListHtml .img-list,
+#jsApp #aside .glossaryHtml .img-list,
+#jsApp #aside .videoNameHtml .img-list,
+#jsApp #aside .tabBarHtml .img-list {
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+  border: 1px solid #DCDCDC;
+  cursor: default;
+}
+#jsApp #aside .imgHtml .img-list > span,
+#jsApp #aside .carouselHtml .img-list > span,
+#jsApp #aside .classfiyHtml .img-list > span,
+#jsApp #aside .imgListHtml .img-list > span,
+#jsApp #aside .glossaryHtml .img-list > span,
+#jsApp #aside .videoNameHtml .img-list > span,
+#jsApp #aside .tabBarHtml .img-list > span {
+  display: block;
+  text-indent: 1.5em;
+  position: relative;
+}
+#jsApp #aside .imgHtml .img-list > span:before,
+#jsApp #aside .carouselHtml .img-list > span:before,
+#jsApp #aside .classfiyHtml .img-list > span:before,
+#jsApp #aside .imgListHtml .img-list > span:before,
+#jsApp #aside .glossaryHtml .img-list > span:before,
+#jsApp #aside .videoNameHtml .img-list > span:before,
+#jsApp #aside .tabBarHtml .img-list > span:before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-left: 8px solid #888;
+  border-bottom: 5px solid transparent;
+  transition: all linear .3s;
+}
+#jsApp #aside .imgHtml .img-list > span .fa-trash-o,
+#jsApp #aside .carouselHtml .img-list > span .fa-trash-o,
+#jsApp #aside .classfiyHtml .img-list > span .fa-trash-o,
+#jsApp #aside .imgListHtml .img-list > span .fa-trash-o,
+#jsApp #aside .glossaryHtml .img-list > span .fa-trash-o,
+#jsApp #aside .videoNameHtml .img-list > span .fa-trash-o,
+#jsApp #aside .tabBarHtml .img-list > span .fa-trash-o {
+  float: right;
+  font-size: 1.3em;
+  padding-right: 0.5em;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+#jsApp #aside .imgHtml .img-list > span.openW:before,
+#jsApp #aside .carouselHtml .img-list > span.openW:before,
+#jsApp #aside .classfiyHtml .img-list > span.openW:before,
+#jsApp #aside .imgListHtml .img-list > span.openW:before,
+#jsApp #aside .glossaryHtml .img-list > span.openW:before,
+#jsApp #aside .videoNameHtml .img-list > span.openW:before,
+#jsApp #aside .tabBarHtml .img-list > span.openW:before {
+  transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+  -moz-transform: rotateZ(90deg);
+  -ms-transform: rotateZ(90deg);
+}
+#jsApp #aside .imgHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .carouselHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .classfiyHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .imgListHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .glossaryHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .videoNameHtml .img-list > span.openW + .uploadDiv,
+#jsApp #aside .tabBarHtml .img-list > span.openW + .uploadDiv {
+  display: flex;
+  border-top: 1px solid #DCDCDC;
+  padding: 0.5em;
+}
+#jsApp #aside .imgHtml .img-list .uploadDiv,
+#jsApp #aside .carouselHtml .img-list .uploadDiv,
+#jsApp #aside .classfiyHtml .img-list .uploadDiv,
+#jsApp #aside .imgListHtml .img-list .uploadDiv,
+#jsApp #aside .glossaryHtml .img-list .uploadDiv,
+#jsApp #aside .videoNameHtml .img-list .uploadDiv,
+#jsApp #aside .tabBarHtml .img-list .uploadDiv {
+  display: none;
+}
+#jsApp #aside .adr {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 3px 10px;
+  background: #f5f5f5;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 3px;
+}
+#jsApp #aside .st {
+  background: #2cb9fe;
+  color: #fff;
+}
+#jsApp #aside .car-switch {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0.5em 0;
+  background: #eee;
+}
+#jsApp #aside .car-switch > span:first-child {
+  display: inline-block;
+  width: 40%;
+  max-width: 120px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: 0.5em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#jsApp #aside .switch-container {
+  height: 25px;
+  width: 50px;
+  /*设置checkbox不显示*/
+  /*设置label标签为椭圆状*/
+  /*在label标签内容之前添加如下样式，形成一个未选中状态*/
+  /*在label标签内容之后添加如下样式，形成一个选中状态*/
+  /* ~ 兄弟选择符。
+         p~ul ：位于 p 元素之后的所有 ul 元素
+      */
+  /*选中后，选中样式显示*/
+  /*选中后，未选中样式消失*/
+  /*选中后label的背景色改变*/
+}
+#jsApp #aside .switch-container .switch {
+  display: none;
+}
+#jsApp #aside .switch-container label {
+  display: block;
+  background-color: #aaa;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 12px;
+}
+#jsApp #aside .switch-container label:before {
+  content: '';
+  display: block;
+  border-radius: 12px;
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  opacity: 1;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
+  -webkit-transition: all 0.2s ease;
+}
+#jsApp #aside .switch-container label:after {
+  position: relative;
+  top: -25px;
+  left: 50%;
+  content: '';
+  display: block;
+  border-radius: 12px;
+  height: 100%;
+  width: 50%;
+  background-color: white;
+  opacity: 0;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.08);
+  -webkit-transition: all 0.2s ease;
+}
+#jsApp #aside .switch-container #switch:checked ~ label:after {
+  opacity: 1;
+}
+#jsApp #aside .switch-container #switch:checked ~ label:before {
+  opacity: 0;
+}
+#jsApp #aside .switch-container #switch:checked ~ label {
+  background-color: green;
+}
+#jsApp #aside button.addFiy {
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  background-color: #efbf1f;
+  border: none;
+  border-radius: 5px;
+}
+#jsApp #aside button:active {
+  background: #cca627;
+}
+#jsApp #aside .slider-range {
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+  background: #eee;
+  border-radius: 5px;
+}
+#jsApp #aside .slider-range > span:first-child {
+  padding-left: 0.5em;
+}
+#jsApp #aside .slider-range .slider-range-min {
+  width: 80%;
+  margin: 10px auto;
+  transform: translateX(-10px);
+}
+#jsApp #aside .slider-range .slider-range-min .ui-widget-header {
+  background: #007fff;
+}
+@keyframes rotateBtn {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes rotateBtn {
+  /*Safari and Chrome*/
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
